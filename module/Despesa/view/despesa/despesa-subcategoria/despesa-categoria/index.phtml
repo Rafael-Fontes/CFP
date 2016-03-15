@@ -1,0 +1,75 @@
+<div class="row">
+
+    <div class="content-frame-top">                        
+        <div class="page-title">                    
+            <h2><span class="fa fa-list"></span> Categoria das despesas</h2>
+        </div>                                                                                                
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-default">            
+            <div class="panel-heading">            
+                <h3 class="panel-title">Lista</h3>
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-rounded"
+                       href="<?php echo $this->url('despesa-categoria/default', array('action' => 'salvar')); ?>">
+                        <span class="fa fa-plus"></span> Nova categoria
+                    </a>
+                </div>                
+            </div>
+            
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input class="form-control" type="text" name="descricao"></td>
+                                <td>
+                                    <button type="submit" class="btn btn-default" id="filtro-tabela-submit"> 
+                                        <span class="fa fa-filter"></span>Filtrar
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <?php foreach ($despesasCategorias as $imprimir) : ?>
+                                <tr>
+                                    <td><?php echo $this->escapeHtml($imprimir->nome); ?></td>
+                                    <td>
+                                        <?php 
+                                            echo $this->partial('partial/btn_crud.phtml', 
+                                            array(
+                                                'rota'   => 'despesa-categoria/default',
+                                                'id'     => $imprimir->id,
+                                                'action' => array('editar', 'deletar')
+                                            )); 
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    
+                    <!--Início paginação-->
+                    <?php                            
+                        echo $this->paginationControl(
+                            $this->despesasCategorias,
+                            'sliding',
+                            'partial/paginator.phtml',
+                            array(
+                                'route' => 'conta'
+                            )
+                        );
+                    ?>                      
+                    <!--Fim paginação-->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-12">
+        <?php
+        $form->setAttribute('action', $this->url('receita/default', array('action' => 'editar', 'id' => $id)));
+        $form->prepare();
+        ?>
+
+        <?php echo $this->form()->openTag($form); ?>
+        <div class="panel panel-default tabs">
+            
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#tab-pricipal" role="tab" data-toggle="tab">Nova receita</a></li>
+                <li><a href="#tab-dois" role="tab" data-toggle="tab">Mais informações</a></li>
+            </ul>
+
+            <div class="panel-body tab-content">
+                <div class="tab-pane active" id="tab-pricipal">
+                    
+                    <div class="col-md-12 campo-form">
+                        <label class="col-md-2 col-xs-3 control-label">Cliente</label>
+                        <div class="col-md-8 col-xs-9 margin-bottom-15">                                                                                
+                            <?php echo $this->formRow($form->get('fk_cliente')->setValueOptions($fk_cliente)); ?>
+                        </div>
+                    </div> 
+                    
+                    <div class="col-md-12 campo-form">
+                        <label class="col-md-2 col-xs-3 control-label">Descrição *</label>
+                        <div class="col-md-8 col-xs-9 margin-bottom-15">
+                            <?php echo $this->formHidden($form->get('id')); ?>
+                            <?php echo $this->formHidden($form->get('csrf')); ?>
+                            <?php echo $this->formRow($form->get('descricao')); ?>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12 campo-form">
+                        <label class="col-md-2 col-xs-3 control-label">Valor *</label>
+                        <div class="col-md-3 col-xs-9 margin-bottom-15">
+                            <?php echo $this->formRow($form->get('valor')); ?>
+                        </div>
+
+                        <label class="col-md-2 col-xs-3 control-label">Pagamento *</label>
+                        <div class="col-md-3 col-xs-9 margin-bottom-15">                                                                                
+                            <?php echo $this->formRow($form->get('pagamento')); ?>
+                        </div>
+                    </div> 
+                    
+                    
+                    <div class="col-md-12 campo-form">
+                        <label class="col-md-2 col-xs-3 control-label">Data vencimento *</label>
+                        <div class="col-md-3 col-xs-9 margin-bottom-15">
+                            <?php echo $this->formRow($form->get('data_vencimento')); ?>
+                        </div>
+                        
+                        <label class="col-md-2 col-xs-3 control-label">Data pagamento</label>
+                        <div class="col-md-3 col-xs-9 margin-bottom-15">
+                            <?php echo $this->formRow($form->get('pagamento_data')); ?>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-12 campo-form">
+                        <label class="col-md-2 col-xs-3 control-label">Categoria *</label>
+                        <div class="col-md-3 col-xs-9 margin-bottom-15">                                                                                
+                            <?php echo $this->formRow($form->get('fk_categoria')->setValueOptions($fk_categoria)); ?>
+                        </div>   
+                        
+                        <label class="col-md-2 col-xs-3 control-label">Subcategoria</label>
+                        <div class="col-md-3 col-xs-9 margin-bottom-15">                                                                                
+                            <?php echo $this->formRow($form->get('fk_subcategoria')->setValueOptions($fk_subcategoria)); ?>
+                        </div>
+                    </div>
+                         
+
+                    <div class="col-md-12 campo-form">
+                        <label class="col-md-2 col-xs-3 control-label">Conta *</label>
+                        <div class="col-md-8 col-xs-9 margin-bottom-15">                                                                                
+                            <?php echo $this->formRow($form->get('fk_conta')->setValueOptions($fk_conta)); ?>
+                        </div>                        
+                    </div>
+                </div>
+                
+                
+                <div class="tab-pane" id="tab-dois"></div>
+            </div>
+
+            <div class="panel-footer"> 
+                <div class="pull-right">
+                    <a class="btn btn-default"
+                       href="<?php echo $this->url('receita'); ?>">
+                        <span class="fa fa-arrow-left"></span> Voltar
+                    </a> &nbsp;&nbsp;
+
+                    <button type="submit" class="btn btn-primary">
+                        <span class="fa fa-save"></span> Editar
+                    </button> 
+                </div>
+            </div>           
+
+        </div>   
+        <?php echo $this->form()->closeTag(); ?>
+
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Testes do modulo Cliente" tests="5" assertions="26" failures="1" errors="0" time="1.126339">
+    <testsuite name="ClienteTest\Controller\ClienteControllerTest" file="C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Controller\ClienteControllerTest.php" tests="1" assertions="0" failures="1" errors="0" time="0.921665">
+      <testcase name="testAcessoAPaginaIndex" class="ClienteTest\Controller\ClienteControllerTest" file="C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Controller\ClienteControllerTest.php" line="29" assertions="0" time="0.921665">
+        <failure type="PHPUnit_Framework_ExpectationFailedException">ClienteTest\Controller\ClienteControllerTest::testAcessoAPaginaIndex
+Failed asserting response code "200", actual status code is "500"
+
+C:\wamp\www\Projetos\CFP\vendor\zendframework\zend-test\src\PHPUnit\Controller\AbstractControllerTestCase.php:412
+C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Controller\ClienteControllerTest.php:32
+</failure>
+      </testcase>
+    </testsuite>
+    <testsuite name="ClienteTest\ModelTest\ClienteTest" file="C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Model\ClienteTest.php" tests="3" assertions="24" failures="0" errors="0" time="0.082434">
+      <testcase name="testEstadoInicialDoObjetoCliente" class="ClienteTest\ModelTest\ClienteTest" file="C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Model\ClienteTest.php" line="54" assertions="8" time="0.008070"/>
+      <testcase name="testDoMetodoExchangeArray" class="ClienteTest\ModelTest\ClienteTest" file="C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Model\ClienteTest.php" line="75" assertions="8" time="0.060324"/>
+      <testcase name="testDoMetodoGetArrayCopy" class="ClienteTest\ModelTest\ClienteTest" file="C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Model\ClienteTest.php" line="96" assertions="8" time="0.014040"/>
+    </testsuite>
+    <testsuite name="ClienteTest\Model\Filtro\AuthFiltroTest" file="C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Model\Filtro\AuthFiltroTest.php" tests="1" assertions="2" failures="0" errors="0" time="0.122240">
+      <testcase name="testVefiricaSeFiltrosDeEntradaEstaoDefinidosCorretamente" class="ClienteTest\Model\Filtro\AuthFiltroTest" file="C:\wamp\www\Projetos\CFP\module\Cliente\tests\src\ClienteTest\Model\Filtro\AuthFiltroTest.php" line="28" assertions="2" time="0.122240"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

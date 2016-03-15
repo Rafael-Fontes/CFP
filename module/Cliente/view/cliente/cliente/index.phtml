@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="content-frame-top">                        
+        <div class="page-title">                    
+            <h2><span class="fa fa-list"></span> Lista de registros</h2>
+        </div>                                                                                                
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            
+            <div class="panel-heading">                                
+                <h3 class="panel-title">Clientes</h3>
+                
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-rounded"
+                       href="<?php echo $this->url('cliente/default', array('action' => 'salvar')); ?>">
+                        <span class="fa fa-plus"></span> Novo registro
+                    </a>
+                </div>                
+            </div>
+            
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>                            
+                            <?php foreach ($clientes as $imprimir) : ?>
+                                <tr>
+                                    <td><?php echo $this->escapeHtml($imprimir->id);    ?></td>
+                                    <td><?php echo $this->escapeHtml($imprimir->nome);  ?></td>
+                                    <td><?php echo $this->escapeHtml($imprimir->email); ?></td>
+                                    <td>
+                                        <?php echo $this->partial('partial/btn_crud.phtml', 
+                                            array(
+                                                'rota'   => 'cliente/default',
+                                                'id'     => $imprimir->id,
+                                                'action' => array('vizualizar', 'editar', 'deletar')
+                                            )); 
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    
+                    <!--Início paginação-->
+                    <?php                            
+                        echo $this->paginationControl(
+                            $this->clientes,
+                            'sliding',
+                            'partial/paginator.phtml',
+                            array(
+                                'route' => 'cliente'
+                            )
+                        );
+                    ?>                      
+                    <!--Fim paginação-->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

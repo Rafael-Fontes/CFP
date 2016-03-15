@@ -1,0 +1,72 @@
+<?php
+    $urlPattern = $_SERVER["REQUEST_URI"];
+    $formatUrl  = function($page) use ($urlPattern){
+        if(!preg_match('/page/', $urlPattern)){
+            return $urlPattern . "/page/" . (int)$page;
+        }
+        else{
+            return preg_replace('@/page/(\d+)@', '/page/' .(int) $page, $urlPattern);
+        }
+    }
+?>
+
+<?php if ($this->pageCount): ?>
+
+    <div class="dataTables_info" role="status" aria-live="polite">
+        Mostrando de  
+            <?php echo $this->firstItemNumber; ?> a 
+            <?php echo $this->lastItemNumber; ?> de 
+            <?php echo $this->totalItemCount; ?> registros
+    </div>
+
+    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+        <ul class="pagination">
+            
+            <!-- Previous page link -->
+            <?php if (isset($this->previous)): ?>
+                <li>
+                    <a class="paginate_button previous" aria-controls="DataTables_Table_0" href="<?php echo $formatUrl($this->previous); ?>">
+                        Anterior
+                    </a>
+                </li>
+            <?php else: ?>
+                <li class="disabled">
+                    <a class="paginate_button previous disabled" aria-controls="DataTables_Table_0" href="#">
+                        Anterior
+                    </a>
+                </li>
+            <?php endif; ?>
+                
+
+            <!-- Numbered page links -->
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <?php if ($page != $this->current): ?>
+                    <li>
+                        <a class="paginate_button" aria-controls="DataTables_Table_0" href="<?php echo $formatUrl($page); ?>">
+                            <?php echo $page; ?>
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a class="paginate_button current" aria-controls="DataTables_Table_0" href="#"><?php echo $page; ?></a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+            <!-- Next page link -->
+            <?php if (isset($this->next)): ?>
+                <li>
+                    <a class="paginate_button next" aria-controls="DataTables_Table_0" href="<?php echo $formatUrl($this->next); ?>">
+                        Próximo
+                    </a>
+                </li>
+            <?php else: ?>
+                <li class="disabled">
+                    <a class="paginate_button next disabled" aria-controls="DataTables_Table_0" href="#">
+                        Próximo
+                    </a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+<?php endif; ?>

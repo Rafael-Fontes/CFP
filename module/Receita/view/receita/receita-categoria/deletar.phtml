@@ -1,0 +1,48 @@
+<?php
+$url = $this->url('receita-categoria/default', array(
+    'action' => 'deletar',
+    'id'     => $receitaCategoria->id,
+));
+?>
+<div class="row">
+    <div class="content-frame-top">                        
+        <div class="page-title">                    
+            <h2><span class="fa fa-file-text"></span> Deletar registro.</h2>
+        </div>                                                                                                
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel-body padding-0">
+            <br/>
+            <div class="col-md-12">
+                <div class="panel panel-danger">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-md-4 col-xs-5 control-label">Nome</label>
+                            <div class="col-md-8 col-xs-7 line-height-30"><?php echo $receitaCategoria->nome ?></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-12 col-xs-12">
+                                <span class="alert alert-warning">
+                                    Ao deletar essa categoria, todas as receitas associadas a ela serão deletadas.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <form action="<?php echo $url; ?>" method="post">
+                            <div class="pull-right">
+                                <input type="hidden" name="id" value="<?php echo (int) $receitaCategoria->id; ?>" />         
+                                <input type="submit" class="btn btn-danger  btn-rounded" name="del" value="Deletar" />
+                                <input type="button" class="btn btn-primary btn-rounded" id="fechar_modal_xxx" name="del" value="Cancelar" />                    
+                            </div>
+                        </form>                     
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

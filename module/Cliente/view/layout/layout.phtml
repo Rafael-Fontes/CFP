@@ -1,0 +1,134 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">        
+
+        <?php
+        echo $this->headMeta()
+                //->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ?>
+
+        <?php echo $this->headTitle("Primeiro projeto ZF2") ?>
+        
+        <!-- Arquivos CSS -->
+        <?php
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                ->prependStylesheet($this->basePath('css/theme-default.css'))
+                ->prependStylesheet($this->basePath('css/alertifyjs/alertify.min.css'))
+                ->prependStylesheet($this->basePath('css/alertifyjs/themes/default.min.css'))
+        ?>
+
+        <!-- Scripts -->
+        <?php
+            $this->inlineScript()
+                ->prependFile($this->basePath('js/plugins/jquery/jquery.min.js'))
+                ->appendFile($this->basePath('js/plugins/jquery/jquery-ui.min.js'))
+                ->appendFile($this->basePath('js/plugins/bootstrap/bootstrap.min.js'))
+                ->appendFile($this->basePath('js/cfp/traducoes.js'))
+                ->appendFile($this->basePath('js/plugins/icheck/icheck.min.js'))
+                ->appendFile($this->basePath('js/plugins/datatables/jquery.dataTables.min.js'))
+                ->appendFile($this->basePath('js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'))
+                ->appendFile($this->basePath('js/plugins/scrolltotop/scrolltopcontrol.js'))
+                ->appendFile($this->basePath('js/plugins/morris/raphael-min.js'))
+                ->appendFile($this->basePath('js/plugins/morris/morris.min.js'))
+                ->appendFile($this->basePath('js/plugins/rickshaw/d3.v3.js'))
+                ->appendFile($this->basePath('js/plugins/rickshaw/rickshaw.min.js'))
+                ->appendFile($this->basePath('js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'))
+                ->appendFile($this->basePath('js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'))
+                ->appendFile($this->basePath('js/plugins/bootstrap/bootstrap-datepicker.js'))
+                ->appendFile($this->basePath('js/plugins/bootstrap/bootstrap-colorpicker.js'))
+                ->appendFile($this->basePath('js/plugins/tagsinput/jquery.tagsinput.min.js'))
+                ->appendFile($this->basePath('js/plugins/bootstrap/bootstrap-select.js'))
+                ->appendFile($this->basePath('js/plugins/bootstrap/bootstrap-file-input.js'))
+                ->appendFile($this->basePath('js/plugins/bootstrap/bootstrap-timepicker.min.js'))
+                ->appendFile($this->basePath('js/plugins/owl/owl.carousel.min.js'))
+                ->appendFile($this->basePath('js/plugins/moment.min.js'))
+                ->appendFile($this->basePath('js/plugins/daterangepicker/daterangepicker.js'))
+                ->appendFile($this->basePath('js/plugins/jquery_mask/jquery.mask.min.js'))
+                ->appendFile($this->basePath('js/plugins/jquery.maskMoney/jquery.maskMoney.min.js'))
+                ->appendFile($this->basePath('js/plugins/alertifyjs/alertify.min.js'))
+                ->appendFile($this->basePath('js/settings.js'))
+                ->appendFile($this->basePath('js/plugins.js'))
+                ->appendFile($this->basePath('js/actions.js'))
+
+                ->appendFile($this->basePath('js/cfp/mascaras.js'))
+                ->appendFile($this->basePath('js/cfp/filtros.js'))
+                ->appendFile($this->basePath('js/cfp/deletar.js'))
+        ;
+        ?>
+
+    </head>
+    <body>
+        <div class="page-container page-navigation-top">
+            <div class="page-content">
+                <ul class="x-navigation x-navigation-horizontal">
+                    <li class="xn-logo">
+                        <a href="index.html">ATLANT</a>
+                        <a href="#" class="x-navigation-control"></a>
+                    </li>
+
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Receitas</span></a>
+                        <ul class="animated zoomIn">
+                            <li><a href="<?php echo $this->url('receita') ?>">Minhas receitas</a></li>
+                            <li><a href="<?php echo $this->url('receita-categoria') ?>">Categoria das receitas</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="xn-icon-button pull-right last">
+                        <a href="#"><span class="fa fa-power-off"></span></a>
+                        <ul class="xn-drop-left animated zoomIn">
+                            <li><a href="pages-lock-screen.html"><span class="fa fa-lock"></span> Lock Screen</a></li>
+                            <li><a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span> Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!--Início breadcrumb-->
+                <?php
+                    echo $this->navigation('navigation')
+                              ->breadcrumbs()
+                              ->setLinkLast(true)
+                              ->setMinDepth(1)
+                              ->setPartial('partial/breadcrumb.phtml');
+                ?>
+                <!--Fim breadcrumb-->
+
+
+                <!--Início mensagens-->
+                <div class="col-md-4 pull-right">
+                    <?php
+                        $flash = $this->flashMessenger();
+                        $flash->setMessageOpenFormat(
+                            '<div%s>
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    &times;
+                                </button>
+                            <div>')
+                        ->setMessageCloseString('</div></div>');
+
+                        echo $flash->render('error',   array('alert', 'alert-danger'));
+                        echo $flash->render('info',    array('alert', 'alert-info'));
+                        echo $flash->render('default', array('alert', 'alert-warning'));
+                        echo $flash->render('success', array('alert', 'alert-success'));
+                    ?>
+                </div>
+                <!--Fim mensagens-->
+
+
+                <!--Início conteudo-->
+                <div class="page-content-wrap">
+                    <?php echo $this->content; ?>
+                </div>
+                <!--Fim conteudo-->
+
+            </div>
+        </div>
+
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

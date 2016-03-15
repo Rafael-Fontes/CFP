@@ -1,0 +1,105 @@
+<div class="row">
+
+    <div class="content-frame-top">
+        <div class="page-title">
+            <h2><span class="fa fa-list"></span> Minhas contas</h2>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+
+                <div class="pull-left">
+                    <input type="text" name="data" class="form-control" id="calendario-mes-ano" value="Janeiro, 2015"/>
+                </div>
+
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-rounded"
+                       href="<?php echo $this->url('conta/default', array('action' => 'salvar')); ?>">
+                        <span class="fa fa-plus"></span> Nova conta
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Tipo</th>
+                                <th>Nome</th>
+                                <th>Saldo atual</th>
+                                <th>Saldo final do mês</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input class="form-control" type="text" name="cliente"></td>
+                                <td><input class="form-control" type="text" name="tipo">  </td>
+                                <td><input class="form-control" type="text" name="nome">  </td>
+                                <td><input class="form-control" type="text" name="saldo"  data-mascara="dinheiro-br2"> </td>
+                                <td><input class="form-control" type="text" name="saldo2" data-mascara="dinheiro-br2"></td>
+                                <td>
+                                    <button type="submit" class="btn btn-default" id="filtro-tabela-submit">
+                                        <span class="fa fa-filter"></span>Filtrar
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <?php foreach ($contas as $imprimir) : ?>
+                                <?php
+                                    //$saldo_ini_mes = (!empty($imprimir->saldo_inicio_mes)) ? $imprimir->saldo_inicio_mes : '00.00';
+                                    //$saldo_atual   += $saldo_ini_mes;
+                                ?>
+                                <tr>
+                                    <td><?php echo $this->escapeHtml($imprimir->cliente_nome);  ?></td>
+                                    <td><?php echo $this->escapeHtml($imprimir->tipo_nome);     ?></td>
+                                    <td><?php echo $this->escapeHtml($imprimir->nome);          ?></td>
+                                    <td><?php echo $this->escapeHtml('R$ '. number_format($imprimir->saldo, 2, ',', '.')); ?></td>
+                                    <td><?php echo $this->escapeHtml('R$ '. number_format($imprimir->saldo, 2, ',', '.')); ?></td>
+                                    <td>
+                                        <?php
+                                            echo $this->partial('partial/btn_crud.phtml',
+                                            array(
+                                                'rota'   => 'conta/default',
+                                                'id'     => $imprimir->id,
+                                                'action' => array('editar', 'deletar')
+                                            ));
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+                    <!--Início paginação-->
+                    <?php
+                        echo $this->paginationControl(
+                            $this->contas,
+                            'sliding',
+                            'partial/paginator.phtml',
+                            array(
+                                'route' => 'conta'
+                            )
+                        );
+                    ?>
+                    <!--Fim paginação-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-3 pull-right padding-0">
+            <div class="widget widget-default saldo-atual-index">
+                <div class="widget-title">Saldo atual</div>
+                <div class="widget-int">R$ <span data-toggle="counter"><?php echo number_format($saldo_atual, 2, ',', '.') ?></span></div>
+            </div>
+        </div>
+    </div>
+
+</div>

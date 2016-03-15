@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="Bootstrap.php" colors="true" backupGlobals="false">
+
+    <testsuites>
+        <testsuite name="Testes do modulo Cliente">
+            <directory>./</directory>
+        </testsuite>
+    </testsuites>
+
+
+    <!-- Code Coverage Configuration -->
+    <filter>
+        <whitelist>
+            <directory suffix=".php">../</directory>
+            <exclude>
+                <directory suffix=".php">./</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+
+    <logging>
+        <log type="coverage-html" target="relatorios/coverage" title="Modulo Cliente" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-clover" target="relatorios/logs/clover.xml"/>
+        <log type="junit" target="relatorios/logs/junit.xml" logIncompleteSkipped="false"/>
+        <log type="testdox-text" target="relatorios/testdox/executed.txt"/>
+    </logging>
+
+</phpunit>

@@ -1,0 +1,50 @@
+<?php
+    $url = $this->url('cliente/default', array(
+        'action' => 'deletar',
+        'id'     => $cliente->id,
+    ));
+?>
+<div class="row">
+    <div class="content-frame-top">                        
+        <div class="page-title">                    
+            <h2><span class="fa fa-file-text"></span> Deletar registro.</h2>
+        </div>                                                                                                
+    </div>
+
+    <div class="col-md-12 center-block">
+        <div class="panel panel-default form-horizontal">
+            <div class="panel-body">
+                <br/>
+                <div class="col-md-4">
+                    <div class="panel panel-danger">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-4 col-xs-5 control-label">ID</label>
+                                <div class="col-md-8 col-xs-7 line-height-30"><?php echo $cliente->id ?></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-xs-5 control-label">Cliente</label>
+                                <div class="col-md-8 col-xs-7 line-height-30"><?php echo $cliente->nome ?></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-xs-5 control-label">Email</label>
+                                <div class="col-md-8 col-xs-7 line-height-30"><?php echo $cliente->email ?></div>
+                            </div>
+                        </div>
+                        
+                        <div class="panel-footer">
+                            <form action="<?php echo $url; ?>" method="post">
+                                <div>
+                                    <input type="hidden" name="id" value="<?php echo (int) $cliente->id; ?>" />                                   
+                                    <input type="submit" class="btn btn-primary btn-rounded pull-left"  name="del" value="Voltar" />
+                                    <input type="submit" class="btn btn-danger  btn-rounded pull-right" name="del" value="Deletar" />
+                                </div>
+                            </form>                     
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

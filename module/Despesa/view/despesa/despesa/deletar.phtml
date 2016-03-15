@@ -1,0 +1,69 @@
+<?php
+    $url = $this->url('despesa/default', array(
+        'action' => 'deletar',
+        'id'     => $despesa->getId(),
+    ));
+?>
+<div class="row">
+    <div class="content-frame-top">
+        <div class="page-title">
+            <h2><span class="fa fa-file-text"></span> Deletar registro.</h2>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel-body padding-0">
+            <br/>
+            <div class="col-md-12">
+                <div class="panel panel-danger">
+                    <form action="<?php echo $url; ?>" method="post">
+
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-2 col-xs-5 padding-0">Descrição: </label>
+                                <div class="col-md-10 col-xs-7"><?php echo $despesa->getDescricao() ?></div>
+                            </div>
+                            <?php if(!empty($despesa->getGrupo())): ?>
+                                <br/>
+                                <div class="form-group">
+                                    <p>Você está prestes a excluir uma despesa que está repetida em outras datas.</p>
+                                    <br/>
+                                    <label class="col-md-12 col-xs-5 padding-0">Qual despesa você deseja excluir? </label>
+
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="despesasAssociadas" value="uma" checked="checked"/>
+                                            Excluir apenas essa despesa.
+                                        </label>
+                                    </div>
+
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="despesasAssociadas" value="estaEDemais"/>
+                                            Excluir esta e as próximas despesas associadas a esta.
+                                        </label>
+                                    </div>
+
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="despesasAssociadas" value="todas"/>
+                                            Excluir todas as despesas associadas a esta.
+                                        </label>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="panel-footer">
+                            <div class="pull-right">
+                                <input type="hidden" name="id" value="<?php echo (int) $despesa->getId(); ?>" />
+                                <input type="submit" class="btn btn-danger  btn-rounded" value="Deletar" />
+                                <input type="reset"  class="btn btn-primary btn-rounded" value="Cancelar" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

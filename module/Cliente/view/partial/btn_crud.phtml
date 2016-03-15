@@ -1,0 +1,28 @@
+<div id="btn_crud">
+    <?php if(isset($this->action) && in_array('vizualizar', $this->action)): ?>
+        <a class="btn btn-condensed btn-rounded btn-info" data-placement="top" data-toggle="tooltip" data-original-title="Vizualizar" 
+           href="<?php echo $this->url($this->rota, array('action' => 'vizualizar', 'id' => $this->id)) ?>">
+            <span class="fa fa-eye"></span>
+        </a> 
+        &nbsp;
+    <?php endif; ?>
+
+
+    <?php if(isset($this->action) && in_array('editar', $this->action)): ?>
+        <a class="btn btn-condensed btn-rounded btn-success" data-placement="top" data-toggle="tooltip" data-original-title="Editar"  
+           href="<?php echo $this->url($this->rota, array('action' => 'editar', 'id' => $this->id)) ?>">
+            <span class="fa fa-edit"></span>
+        </a>
+        &nbsp;
+    <?php endif; ?>
+
+
+
+    <?php if(isset($this->action) && in_array('deletar', $this->action)): ?>
+        <a class="btn btn-condensed btn-rounded btn-danger" data-placement="top" data-toggle="tooltip" data-original-title="Deletar"
+          data-acao="deletar" href="<?php echo $this->url($this->rota, array('action' => 'deletar', 'id' => $this->id)) ?>">
+            <span class="fa fa-trash-o"></span>
+        </a>
+        &nbsp;
+    <?php endif; ?>
+</div>

@@ -1,0 +1,88 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en" class="body-full-height">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle("Primeiro projeto ZF2") ?>
+
+        <?php
+        echo $this->headMeta()
+                ->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ?>
+
+        <!-- Arquivos CSS -->
+        <?php
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                ->prependStylesheet($this->basePath('css/theme-default.css'))
+        ?>
+
+        <!-- Scripts -->
+        <?php
+        $this->inlineScript()
+                ->prependFile($this->basePath('js/plugins/jquery/jquery.min.js'))
+        ;
+        ?>
+
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="login-box animated fadeInDown">
+                <div class="login-logo"></div>
+                <div class="login-body autenticacao">
+                    <div class="login-title"><strong>Bem-vindo</strong>, Identifique-se</div>
+                    <?php
+                        $form->setAttribute('action', $this->url('login', array('action' => 'login')));
+                        $form->prepare();
+                        echo $this->form()->openTag($form);
+                    ?>                   
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <?php 
+                                    echo $this->formHidden($form->get('csrf'));
+                                    echo $this->formRow($form->get('email'));
+                                ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <?php echo $this->formRow($form->get('senha')); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="checkbox btn-link">
+                                     <label>
+                                        <?php echo $this->formRow($form->get('lembrar')); ?>
+                                         Mantenha-me conectado
+                                     </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-info btn-block">Log In</button>
+                            </div>
+                        </div>
+                    <?php echo $this->form()->closeTag(); ?>
+                </div>
+                <div class="login-footer">
+                    <div class="pull-left">
+                        &copy; 2015 AppName
+                    </div>
+                    <div class="pull-right">
+                        <a href="#">Sobre</a> |
+                        <a href="#">Privacidade</a> |
+                        <a href="#">Contate-nos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

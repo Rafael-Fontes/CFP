@@ -1,0 +1,58 @@
+<div class="row">
+    
+    <div class="content-frame-top">                        
+        <div class="page-title">                    
+            <h2><span class="glyphicon glyphicon-floppy-saved"></span> Salvar registro</h2>
+        </div>                                                                                                
+    </div>
+
+    <div class="col-md-12">
+        <?php
+            $form->setAttribute('action', $this->url('tipo/default', array('action' => 'salvar')));
+            $form->prepare();
+        ?>
+        
+        <?php echo $this->form()->openTag($form); ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Novo tipo de conta</h3>
+            </div>
+            
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-md-3 col-xs-12 control-label">Nome</label>
+                    <div class="col-md-6 col-xs-12">
+                        <?php 
+                            echo $this->formHidden($form->get('csrf'));
+                            echo $this->formRow($form->get('nome'));
+                        ?>
+                    </div>
+                </div>        
+ 
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Situação</label>
+                    <div class="col-md-2">                                                                                
+                        <?php echo $this->formRow($form->get('situacao')); ?>
+                    </div>
+                </div>   
+ 
+            </div>
+            
+            <div class="panel-footer"> 
+                <div class="pull-right">
+                    <a class="btn btn-default"
+                       href="<?php echo $this->url('tipo'); ?>">
+                        <span class="fa fa-arrow-left"></span> Voltar
+                    </a> &nbsp;&nbsp;
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <span class="fa fa-save"></span> Salvar
+                    </button> 
+                </div>
+            </div>           
+            
+        </div>   
+        <?php echo $this->form()->closeTag(); ?>
+        
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <?php echo $this->headTitle("Primeiro projeto ZF2") ?>
+
+        <?php
+            echo $this->headMeta()
+                    ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+                    ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ?>
+
+        <?php echo $this->headTitle("Primeiro projeto ZF2") ?>
+
+        <!-- Arquivos CSS -->
+        <?php
+            echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                      ->prependStylesheet($this->basePath('css/theme-default.css'));
+        ?>
+
+        <!-- Scripts -->
+        <?php
+            $this->inlineScript()
+                    ->prependFile($this->basePath('js/plugins/jquery/jquery.min.js'));
+        ?>
+    </head>
+
+    <body>
+        <div class="page-container page-navigation-top">
+            <div class="page-content">
+                <div class="page-content-wrap">
+                    <?php echo $this->content; ?>
+                </div>
+            </div>
+        </div>
+
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

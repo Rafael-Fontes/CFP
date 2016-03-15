@@ -1,0 +1,11 @@
+ClienteTest\Controller\ClienteController
+ [ ] Acesso a pagina index
+
+ClienteTest\ModelTest\Cliente
+ [x] Estado inicial do objeto cliente
+ [x] Do metodo exchange array
+ [x] Do metodo get array copy
+
+ClienteTest\Model\Filtro\AuthFiltro
+ [x] Vefirica se filtros de entrada estao definidos corretamente
+

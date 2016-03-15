@@ -1,0 +1,66 @@
+<div class="row">
+
+    <div class="col-md-12">
+        <?php
+            $form->setAttribute('action', $this->url('conta/default', array('action' => 'salvar')));
+            $form->prepare();
+        ?>
+
+        <?php echo $this->form()->openTag($form); ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Salvar conta</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Cliente</label>
+                    <div class="col-md-6">                                                                                
+                        <?php echo $this->formRow($form->get('fk_cliente')->setValueOptions($fk_cliente)); ?>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 col-xs-12 control-label">Nome</label>
+                    <div class="col-md-6 col-xs-12">
+                        <?php
+                        echo $this->formHidden($form->get('csrf'));
+                        echo $this->formRow($form->get('nome'));
+                        ?>
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-md-2 control-label">Saldo</label>
+                    <div class="col-xs-12 col-md-6">
+                        <?php echo $this->formRow($form->get('saldo')); ?>
+                    </div>
+                </div>  
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Tipo</label>
+                    <div class="col-md-6">                                                                                
+                        <?php echo $this->formRow($form->get('fk_tipo')->setValueOptions($fk_tipo)); ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer"> 
+                <div class="pull-right">
+                    <a class="btn btn-default"
+                       href="<?php echo $this->url('conta'); ?>">
+                        <span class="fa fa-arrow-left"></span> Voltar
+                    </a> &nbsp;&nbsp;
+
+                    <button type="submit" class="btn btn-primary">
+                        <span class="fa fa-save"></span> Salvar
+                    </button> 
+                </div>
+            </div>           
+
+        </div>   
+        <?php echo $this->form()->closeTag(); ?>
+
+    </div>
+</div>

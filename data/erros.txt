@@ -1,0 +1,70 @@
+GERAL
+    *** Na página index ao usar pesquisa ou a paginçao, o migalhas de pão some.
+
+
+RECEITA
+    *** Ao deletar uma receita, caso o saldo da conta fique "0" não se consegui deletar a mesma.
+
+
+CONTA
+    *** A partir do momento que exitam receitas e ou despesas associadas a uma conta, a mesma
+só poderar ter seu saldo alterado atraveis das entradas de receitas ou saidas nas despesas.
+
+    *** Quando o saldo for negativo o mesmo deverar ser apresentado na cor vermelha.
+
+    *** Na tabela de listagem o campo saldo atual corresponde ao valor das receitas do mês que
+tenham sido efetivadas e o campo saldo final do mês corresponde a soma de todas as receitas do mês.
+
+    *** Corrigir função deletar.
+
+    *** Implementar a opção de transferencias entre contas.
+
+DESPESA
+    *** Caso o campo repetir seja não, os campos parcelas e quando deveram aparecer bloqueados.
+
+    *** Ao cadastrar ou editar um registro, caso algum campo der erro na validação a aba referente
+ao erro deverar aparecer como ativa.
+
+    *** Ao cadastrar uma despesa com valor 0.02 o valor do campo saldo da tabela conta não é calculado corretamente.
+
+
+
+
+public function loginAction()
+    {
+        $form    = $this->getAuthForm();
+        $request = $this->getRequest();
+
+        if($request->isPost())
+        {
+            $form->setData($request->getPost());
+
+            if($form->isValid())
+            {
+                $auth    = new AuthenticationService();
+                $session = new Session('Cliente');
+
+                $auth->setStorage($session);
+
+                $this->getAuthAdapter()->setLogin($request->getPost('email'));
+                $this->getAuthAdapter()->setSenha($request->getPost('senha'));
+
+                $resultado = $auth->authenticate($this->getAuthAdapter());
+                if($resultado->isValid())
+                {
+                    $session->write($auth->getIdentity()['cliente'], null);
+                    return $this->redirect()->toRoute('cliente', array('controller' => 'cliente', 'action' => 'index'));
+                }
+                else
+                {
+                    echo "Login ou senha incorreto";
+                }
+            }
+        }
+
+        $viewModel = new ViewModel([
+            'form' => $form
+        ]);
+
+        return $viewModel->setTerminal(true);
+    }

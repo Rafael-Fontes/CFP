@@ -1,0 +1,53 @@
+<?php
+    $url = $this->url('conta/default', array(
+            'action' => 'deletar',
+            'id'     => $conta->getId(),
+    ));
+?>
+
+
+<div class="row">
+    <div class="content-frame-top">                        
+        <div class="page-title">                    
+            <h2><span class="fa fa-file-text"></span> Deletar registro.</h2>
+        </div>                                                                                                
+    </div>
+
+    <div class="col-md-12 center-block">
+        <div class="panel panel-default form-horizontal">
+            <div class="panel-body">
+                <br/>
+                <div class="col-md-12">
+                    <div class="panel panel-danger">
+
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-2 col-xs-5 padding-0">Conta:</label>
+                                <div class="col-md-10 col-xs-7"><?php echo $conta->getNome() ?></div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 col-xs-12 padding-0">
+                                    <span class="alert alert-warning">
+                                        Ao deletar esse conta, todas as despesas, receitas e demais registros associados a ela seram deletados.
+                                    </span>
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <div class="panel-footer">
+                            <form action="<?php echo $url; ?>" method="post">
+                                <div class="pull-right">
+                                    <input type="hidden" name="id" value="<?php echo (int) $conta->getId(); ?>" />                                   
+                                    <input type="submit" class="btn btn-primary btn-rounded pull-left"  value="Deletar" />&nbsp;
+                                    <input type="submit" class="btn btn-danger  btn-rounded pull-right" value="Cancelar" />
+                                </div>
+                            </form>                     
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
